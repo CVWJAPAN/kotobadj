@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ことばDJ - 完全HTML版</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; padding: 20px; background: #fff; }
+    h1 { color: #ff00aa; }
+    button {
+      font-size: 1.2rem; margin: 10px; padding: 10px 20px;
+      background: #00ccff; color: white; border: none; border-radius: 8px;
+    }
+    #message { margin-top: 20px; font-size: 1.1rem; }
+  </style>
+</head>
+<body>
+
+<h1>ことばDJ｜気持ちで音を選ぼう！</h1>
+
+<div class="button-group">
+  <button onclick="playSound('happy')">うれしい</button>
+  <button onclick="playSound('sad')">さみしい</button>
+  <button onclick="playSound('angry')">むしゃくしゃ</button>
+  <button onclick="playSound('scared')">こわい</button>
+  <button onclick="playSound('calm')">ぼーっと</button>
+</div>
+
+<div id="message">気持ちを選んで、音を感じよう。</div>
+
+<audio id="audioPlayer" controls style="display:none;"></audio>
+
+<script>
+  const messages = {
+    happy: "今日はいい日だね！キミの笑顔が光ってる！",
+    sad: "ひとりじゃないよ。誰かがキミを思ってる。",
+    angry: "モヤモヤしてる？深呼吸してリセットしよう！",
+    scared: "こわいときは誰かと一緒にいてもいいんだよ。",
+    calm: "ぼーっとするのも大切な時間だよ。"
+  };
+
+  const sounds = {
+    happy: "data:audio/mp3;base64,SUQzAwAAAAAAFlRFTkMAAAAwAAAATGF2ZjU2LjI0LjEwMAAAAAAAAAAAAAAA//tQxAADBzAywAAA",
+    sad: "data:audio/mp3;base64,SUQzAwAAAAAAFlRFTkMAAAAwAAAATGF2ZjU2LjI0LjEwMAAAAAAAAAAAAAAA//tQxAADBzAywAAA",
+    angry: "data:audio/mp3;base64,SUQzAwAAAAAAFlRFTkMAAAAwAAAATGF2ZjU2LjI0LjEwMAAAAAAAAAAAAAAA//tQxAADBzAywAAA",
+    scared: "data:audio/mp3;base64,SUQzAwAAAAAAFlRFTkMAAAAwAAAATGF2ZjU2LjI0LjEwMAAAAAAAAAAAAAAA//tQxAADBzAywAAA",
+    calm: "data:audio/mp3;base64,SUQzAwAAAAAAFlRFTkMAAAAwAAAATGF2ZjU2LjI0LjEwMAAAAAAAAAAAAAAA//tQxAADBzAywAAA"
+  };
+
+  function playSound(feeling) {
+    const audio = document.getElementById('audioPlayer');
+    audio.src = sounds[feeling];
+    audio.play();
+    document.getElementById('message').innerText = messages[feeling];
+  }
+</script>
+
+</body>
+</html>
